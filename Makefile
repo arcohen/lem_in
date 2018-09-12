@@ -7,16 +7,8 @@ LIBFT = ./libft/libft.a
 RM = rm -rf
 
 all: $(LIBFT)
-	@$(CC) -o $(CHKR) $(SRC) $(CFLAGS) $(INC) $(LIBFT)
+	@$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(INC) $(LIBFT)
 	@echo "\033[32m[Compiled]\033[0m"
-
-lem-in: clean_lem-in
-	@$(RM) $(CHKR)
-	@$(CC) -o $(CHKR) $(CH_SRCS) $(CFLAGS) $(C_INC) $(LIBFT)
-	@echo "\033[32m[Compiled Checker]\033[0m"
-
-clean_chkr:
-	@$(RM) $(NAME)
 
 $(LIBFT):
 	@make re -C ./libft/
