@@ -6,65 +6,84 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/12 16:45:06 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/09/13 18:27:27 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		get_ants(t_map *map)
+int		get_ants(t_map *map, t_line *info)
 {
-	char	*line;
-	int		i;
+	int i;
 
 	i = 0;
-	while (get_next_line(0, &line))
+	while (info)
 	{
-		if (line[0] == '#' && line[1] != '#')
-			continue ;
-		else 
+		if (info->line[0] == '#')
+			info = info->next;
+		else
 		{
-			while (line[i])
+			while (info->line[i])
 			{
-				if (ft_isdigit(line[i]) == 0)
-				{
-					free(line);
+				if (ft_isdigit(info->line[i]) == 0)
 					return (0);
-				}
 				i++;
-			}	
-			map->ant_num = ft_atoi(line);
-			free(line);
+			}
+			map->ant_num = ft_atoi(info->line);
+			ft_strcpy(info->cmt, "ROOM_BEGIN");
 			return (1);
 		}
 	}
 	return (0);
 }
 
-int		get_rooms(t_map *map)
+int		is_room(char *line)
 {
-	char *line;
+	int count;
 
-	//map->rooms
-	while (get_next_line(0, &line))
+	if (line[0] == '#' || line[0] == 'L')
+		return (0);
+	count = 0;
+	while (*line)
 	{
-		if (line[0] == '#' && line[1] != '#')
-			continue ;
-		
+		if (*line == ' ')
+			count++;
+		else if (count)
+			if (!ft_isdigit(*line))
+				return (0);
+		line++;
+	}
+	if (count == 2)
+		return (1);
+	return (0);
+}
+
+int		get_rooms(t_map *map, t_line *info)
+{
+	t_line	*prev;
+
+	map->rooms = (t_line *)malloc(sizeof(t_line));
+	prev = info;
+	while (info)
+	{
+		if (is_room(info->line))
+		{
+			map->rooms->line = info->line;
+		}
+		prev = info;
+		info = info->next;
 	}
 }
 
 void	getinfo(t_line *info)
 {
 	char	*line;
-	t_line	*temp;
 
 	while (get_next_line(0, &line) > 0)
 	{
 		info->line = line;
-		temp = (t_line *)malloc(sizeof(t_line));
-		info->next = temp;
-		info = temp;
+		info->next = (t_line *)malloc(sizeof(t_line));
+		info = info->next;
 		info->next = NULL;
 	}
 }
@@ -72,16 +91,15 @@ void	getinfo(t_line *info)
 int		parse(t_map *map, t_line *info)
 {
 	getinfo(info);
-	if (get_ants(map) == 0)
+	if (get_ants(map, info) == 0)
 	{
 		ft_putstr("ERROR IN ANT NUMBER\n");
-		return (0);		
+		return (0);
 	}
-	if (get_rooms(map) == 0)
+	if (get_rooms(map, info) == 0)
 	{
 		ft_putstr("ERROR IN ROOMS\n");
 		return (0);
 	}
 	return (1);
 }
-

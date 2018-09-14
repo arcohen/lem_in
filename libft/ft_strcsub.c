@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcsub.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/13 13:13:29 by arcohen          ###   ########.fr       */
+/*   Created: 2018/09/13 15:44:20 by arcohen           #+#    #+#             */
+/*   Updated: 2018/09/13 15:52:07 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include "libft.h"
 
-int		main(void)
+char	*ft_strcsub(char const *s, unsigned int end)
 {
-	t_map	*map;
-	t_line	*info;
+	char	*ret;
+	size_t	i;
 
-	info = (t_line *)malloc(sizeof(t_line));
-	map = (t_map *)malloc(sizeof(t_map));
-	if (parse(map, info))
+	i = 0;
+	while (s[i++] != end)
 		;
-	free(map);
-	return (0);
+	ret = ft_strnew(i);
+	if (!s || !ret)
+		return (0);
+	i = -1;
+	while (s[++i] != end)
+		ret[i] = s[i];
+	return (ret);
 }

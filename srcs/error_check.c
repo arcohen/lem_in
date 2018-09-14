@@ -6,8 +6,13 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/12 14:16:20 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/09/13 18:27:28 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+void	find_room_end(t_line *info, t_map *map)
+{
+
+}
