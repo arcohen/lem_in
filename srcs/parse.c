@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/13 18:27:27 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/09/20 14:55:05 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		get_ants(t_map *map, t_line *info)
 	int i;
 
 	i = 0;
-	while (info)
+	while (info->next)
 	{
 		if (info->line[0] == '#')
 			info = info->next;
@@ -25,12 +25,15 @@ int		get_ants(t_map *map, t_line *info)
 		{
 			while (info->line[i])
 			{
-				if (ft_isdigit(info->line[i]) == 0)
+				if (ft_isdigit(info->line[i]) == 0 || ft_atoi(info->line) == 0)
 					return (0);
 				i++;
 			}
 			map->ant_num = ft_atoi(info->line);
-			ft_strcpy(info->cmt, "ROOM_BEGIN");
+			if (info->next)
+				ft_strcpy(info->next->cmt, "ROOM_BEGIN");
+			else
+				ft_strcpy(info->cmt, "ROOM_BEGIN");
 			return (1);
 		}
 	}
@@ -58,48 +61,57 @@ int		is_room(char *line)
 	return (0);
 }
 
-int		get_rooms(t_map *map, t_line *info)
+int		get_rooms(t_line *rooms, t_line *info)
 {
 	t_line	*prev;
 
-	map->rooms = (t_line *)malloc(sizeof(t_line));
 	prev = info;
-	while (info)
+	while (ft_strequ(info->cmt, "ROOM_BEGIN") == 0)
+		info = info->next;
+	while (info->next)
 	{
 		if (is_room(info->line))
 		{
-			map->rooms->line = info->line;
+			rooms = create_link(rooms, info->line, 1);
+			check_for_comm(rooms->cmt, prev->line);
+		}
+		else if (info->line[0] == '#')
+			;
+		else
+		{
+			ft_strcpy(info->cmt, "PIPE_START");
+			return (1);
 		}
 		prev = info;
 		info = info->next;
 	}
-}
-
-void	getinfo(t_line *info)
-{
-	char	*line;
-
-	while (get_next_line(0, &line) > 0)
-	{
-		info->line = line;
-		info->next = (t_line *)malloc(sizeof(t_line));
-		info = info->next;
-		info->next = NULL;
-	}
+	return (0);
 }
 
 int		parse(t_map *map, t_line *info)
 {
-	getinfo(info);
+	if (getinfo(info) == 0)
+	{
+		ft_putstr("EMPTY MAP\n");
+		return (0);
+	}
 	if (get_ants(map, info) == 0)
 	{
 		ft_putstr("ERROR IN ANT NUMBER\n");
 		return (0);
 	}
-	if (get_rooms(map, info) == 0)
+	map->rooms = (t_line *)malloc(sizeof(t_line));
+	if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
 	{
 		ft_putstr("ERROR IN ROOMS\n");
 		return (0);
 	}
+	map->pipes = (t_line *)malloc(sizeof(t_line));
+	if (get_pipes(map, map->pipes, info) == 0)
+	{
+		ft_putstr("ERROR IN PIPES\n");
+		return (0);
+	}
+	print_rooms(info);
 	return (1);
 }
