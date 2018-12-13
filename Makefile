@@ -2,7 +2,7 @@ NAME = lem-in
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 INC = -I ./includes/
-SRC = srcs/main.c srcs/parse.c srcs/error_check.c
+SRC = srcs/main.c srcs/parse.c srcs/error_check.c srcs/algo.c
 LIBFT = ./libft/libft.a
 RM = rm -rf
 

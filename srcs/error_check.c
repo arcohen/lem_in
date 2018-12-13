@@ -30,26 +30,6 @@ void	print_rooms(t_line *info)
 	}
 }
 
-int		check_rooms(t_line *rooms)
-{
-	int start;
-	int end;
-
-	start = 0;
-	end = 0;
-	while (rooms)
-	{
-		if (ft_strequ(rooms->cmt, "ROOM_START"))
-			start++;
-		else if (ft_strequ(rooms->cmt, "ROOM_END"))
-			end++;
-		rooms = rooms->next;
-	}
-	if (start == 1 && end == 1)
-		return (1);
-	return (0);
-}
-
 int		find_char(char *str, int c)
 {
 	int i;

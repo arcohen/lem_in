@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/20 14:55:01 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/09/26 16:20:07 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ int		get_pipes(t_map *map, t_line *pipe, t_line *info)
 	return (1);
 }
 
+void	lstdel(t_line **alst, int del)
+{
+	t_line *next;
+	t_line *current;
+
+	current = *alst;
+	while (current)
+	{
+		next = current->next;
+		if (del)
+			free(current->line);
+		free(current);
+		current = next;
+	}
+	*alst = NULL;
+}
+
+void	free_all(t_map *map, t_line *info)
+{
+	if (map->rooms)
+		lstdel(&map->rooms, 0);
+	if (map->pipes)
+		lstdel(&map->pipes, 0);
+	lstdel(&info, 1);
+	free(info);
+	free(map);
+}
+
 int		main(void)
 {
 	t_map	*map;
@@ -53,11 +81,25 @@ int		main(void)
 
 	info = (t_line *)malloc(sizeof(t_line));
 	map = (t_map *)malloc(sizeof(t_map));
+	map->rooms = (t_line *)malloc(sizeof(t_line));
+	map->pipes = (t_line *)malloc(sizeof(t_line));
+	map->path = (t_path *)malloc(sizeof(t_path));
+	// map->rooms = NULL;
+	// map->pipes = NULL;
 	if (parse(map, info))
 	{
 		ft_putstr("\n1-");
 		ft_putstr(map->rooms->next->line);
 		ft_putchar(10);
 	}
+	// t_line *rooms = map->rooms;
+	// while (rooms->next)
+	// {
+	// 	ft_putchar(10);
+	// 	ft_putnbr(map->rooms->id);
+	// 	ft_putchar(10);
+	// 	rooms = rooms->next;
+	// }
+	//free_all(map, info);
 	return (0);
 }

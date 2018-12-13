@@ -6,11 +6,31 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/20 14:55:05 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/09/26 15:26:22 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int		check_rooms(t_line *rooms)
+{
+	int start;
+	int end;
+
+	start = 0;
+	end = 0;
+	while (rooms)
+	{
+		if (ft_strequ(rooms->cmt, "ROOM_START"))
+			start++;
+		else if (ft_strequ(rooms->cmt, "ROOM_END"))
+			end++;
+		rooms = rooms->next;
+	}
+	if (start == 1 && end == 1)
+		return (1);
+	return (0);
+}
 
 int		get_ants(t_map *map, t_line *info)
 {
@@ -100,18 +120,22 @@ int		parse(t_map *map, t_line *info)
 		ft_putstr("ERROR IN ANT NUMBER\n");
 		return (0);
 	}
-	map->rooms = (t_line *)malloc(sizeof(t_line));
 	if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
 	{
 		ft_putstr("ERROR IN ROOMS\n");
 		return (0);
 	}
-	map->pipes = (t_line *)malloc(sizeof(t_line));
 	if (get_pipes(map, map->pipes, info) == 0)
 	{
 		ft_putstr("ERROR IN PIPES\n");
 		return (0);
 	}
+	if (find_path(map, info) == 0)
+	{
+		ft_putstr("NO POSSIBLE SOLUTION\n");
+		return (0);
+	}
+	ft_putchar(10);
 	print_rooms(info);
 	return (1);
 }

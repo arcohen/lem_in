@@ -1,0 +1,10 @@
+123
+##start
+beginningsteins 2 3
+2 3 4
+5 3 6
+##end
+endsteins 4 5
+2-5
+beginningsteins-endsteins
+endsteins-2
