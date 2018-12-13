@@ -17,8 +17,8 @@
 
 typedef struct	s_path
 {
-	char			*link1;
-	char			*link2;
+	int				link1;
+	int				link2;
 	int				open;
 	struct s_path	*next;
 }				t_path;
@@ -27,9 +27,10 @@ typedef struct	s_map
 {
 	int				ant_num;
 	int				r_count;
-	char			room_start[30];
-	char			room_end[30];
+	struct s_line	*room_start;
+	struct s_line	*room_end;
 	int				id_paths[1000];
+	int				id_arr_size;
 	struct s_line	*rooms;
 	struct s_line	*pipes;
 	struct s_path	*path;

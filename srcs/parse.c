@@ -111,31 +111,25 @@ int		get_rooms(t_line *rooms, t_line *info)
 int		parse(t_map *map, t_line *info)
 {
 	if (getinfo(info) == 0)
-	{
 		ft_putstr("EMPTY MAP\n");
-		return (0);
-	}
-	if (get_ants(map, info) == 0)
-	{
+	else if (get_ants(map, info) == 0)
 		ft_putstr("ERROR IN ANT NUMBER\n");
-		return (0);
-	}
-	if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
-	{
+	else if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
 		ft_putstr("ERROR IN ROOMS\n");
-		return (0);
-	}
-	if (get_pipes(map, map->pipes, info) == 0)
+	else if (get_pipes(map, map->pipes, info) == 0)
 	{
+		print_rooms(map->rooms);
 		ft_putstr("ERROR IN PIPES\n");
-		return (0);
 	}
-	if (find_path(map, info) == 0)
-	{
+	else if (find_path(map, info) == 0)
 		ft_putstr("NO POSSIBLE SOLUTION\n");
-		return (0);
+	else
+	{
+		print_rooms(map->rooms);
+		ft_putstr("\n\n\n\n");
+		ft_putchar(10);
+		print_rooms(info);
+		return (1);
 	}
-	ft_putchar(10);
-	print_rooms(info);
-	return (1);
+	return (0);
 }
