@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 16:59:44 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 22:07:26 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ t_line	*create_link(t_line *curr, char *line, int room)
 	curr->next->next = NULL;
 	curr->line = line;
 	if (room)
+	{
 		curr->line[find_char(curr->line, ' ')] = 0;
+		curr->open = 1;
+	}
 	return (curr->next);
 }

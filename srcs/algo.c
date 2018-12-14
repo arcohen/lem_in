@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 19:32:15 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 22:20:08 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int check_if_dup(t_line *pipe, char *name)
     //     return (0);
     while (pipe->next)
     {
-        ft_putstr(name);
-        ft_putchar(10);
+        // ft_putstr(name);
+        // ft_putchar(10);
         if (ft_strequ(pipe->line, name))
             return (1);
         link = &pipe->line[find_char(pipe->line, '-') + 1];
@@ -105,7 +105,9 @@ void assign_ids(t_line *rooms) {
 }
 
 
-int search_nodes(t_path *path, int id, t_line *rooms, t_crumbs *node_path)
+
+
+int search_nodes(t_path *path, int id, t_line *rooms)
 {
     while (path->next)
     {
@@ -117,20 +119,18 @@ int search_nodes(t_path *path, int id, t_line *rooms, t_crumbs *node_path)
         ft_putnbr(path->open);
         if (path->open)
         {
-            if (id == path->link1)
+            if (id == path->link1 && find_name(path->link2, rooms)->open)
             {
                 ft_putstr("\nFOUND\n");
                 path->open = 0;
-                node_path[size] = *path;
-                path->prev_id = id;
+                find_name(id, rooms)->open = 0;
                 return (path->link2);
             }
-            else if (id == path->link2)
+            else if (id == path->link2 && find_name(path->link1, rooms)->open)
             {
                 ft_putstr("\nFOUND:\n");
                 path->open = 0;
-                node_path[size] = *path;
-                path->prev_id = id;
+                find_name(id, rooms)->open = 0;
                 return (path->link1);
             }
         }
@@ -162,7 +162,7 @@ int path_finder(t_map *map, t_path *path)
         ft_putstr("\nCurrent node location:\n");
         ft_putstr(find_name(id, map->rooms)->line);
         ft_putchar(10);
-        if ((tmp = search_nodes(path, id, map->rooms, t_crumbs map->node_path[map->id_arr_size])))
+        if ((tmp = search_nodes(path, id, map->rooms)))
         {
             ft_putstr("\nArray size:\n");
             ft_putnbr(map->id_arr_size);
@@ -178,7 +178,7 @@ int path_finder(t_map *map, t_path *path)
             ft_putstr("\nBACK ONE PATH\n");
             if (--map->id_arr_size < 0)
                 return (0);
-            id = map->node_path[map->id_arr_size].id;
+            id = map->id_paths[map->id_arr_size];
         }
     }
 }
@@ -207,7 +207,7 @@ int find_path(t_map *map, t_line *info)
     while (i < map->id_arr_size)
     {
         ft_putchar('|');
-        ft_putnbr(map->id_paths[i++]);
+        ft_putstr(find_name(map->id_paths[i++], map->rooms)->line);
         ft_putchar('|');
     }
     ft_putchar(10);

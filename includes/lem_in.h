@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:59:37 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 19:25:29 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 21:51:37 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 
 # include "../libft/libft.h"
 
-typedef struct	s_crumbs
-{
-	struct s_path	*node;
-	int		id;
-}		t_crumbs;
+// typedef struct	s_crumbs
+// {
+// 	struct s_crumbs	*next_crumb;
+// 	struct s_path	*prev;
+// 	int		id;
+// }		t_crumbs;
 
 typedef struct	s_path
 {
 	int		link1;
 	int		link2;
 	int		open;
-	int		prev_id;
+	// int		prev_id;
 	struct s_path	*next;
 }		t_path;
 
@@ -37,7 +38,6 @@ typedef struct	s_map
 	struct s_line	*room_start;
 	struct s_line	*room_end;
 	int		id_paths[1000];
-	struct s_crumbs	node_path[1000];
 	int		id_arr_size;
 	struct s_line	*rooms;
 	struct s_line	*pipes;
@@ -50,6 +50,7 @@ typedef struct	s_line
 	char		*line;
 	char		cmt[20];
 	int		id;
+	int		open;
 }		t_line;
 
 int		parse(t_map *map, t_line *info);

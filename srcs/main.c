@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 17:27:05 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 22:14:58 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	getinfo(t_line *info)
 {
 	char	*line;
-	int		i;
+	int	i;
 
 	i = 0;
 	while (get_next_line(0, &line) > 0)
