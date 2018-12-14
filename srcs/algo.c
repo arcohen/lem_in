@@ -6,35 +6,60 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/20 14:53:48 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 19:32:15 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+
+int check_if_dup(t_line *pipe, char *name)
+{
+    char *link;
+
+    // if (pipe == NULL)
+    //     return (0);
+    while (pipe->next)
+    {
+        ft_putstr(name);
+        ft_putchar(10);
+        if (ft_strequ(pipe->line, name))
+            return (1);
+        link = &pipe->line[find_char(pipe->line, '-') + 1];
+        if (ft_strnequ(link, name, ft_strlen(link)))
+        {
+            link = &name[find_char(name, '-') + 1];
+            if (ft_strnequ(link, pipe->line, ft_strlen(link)))
+                return (1);
+        }
+        pipe = pipe->next;
+    }
+    return (0);
+}
 
 int find_id(char *name, t_line *rooms)
 {
     while (rooms->next)
     {
         if (ft_strequ(name, rooms->line))
-        return (rooms->id);
+            return (rooms->id);
         rooms = rooms->next;
     }
     return (0);
 }
 
-char *find_name(int id, t_line *rooms)
+t_line *find_name(int id, t_line *rooms)
 {
     while (rooms->next)
     {
         if (rooms->id == id)
-            return (rooms->line);
+            return (rooms);
         rooms = rooms->next;
     }
     return (0);
 }
 
-void path_nodes(t_path *path, t_line *pipes, t_line *rooms) {
+void path_nodes(t_path *path, t_line *pipes, t_line *rooms)
+{
     int i;
 
     while (pipes->next)
@@ -80,26 +105,32 @@ void assign_ids(t_line *rooms) {
 }
 
 
-int search_nodes(t_path *path, int id, t_line *rooms)
+int search_nodes(t_path *path, int id, t_line *rooms, t_crumbs *node_path)
 {
     while (path->next)
     {
         ft_putstr("\nnode:\n");
-        ft_putstr(find_name(path->link1, rooms));
+        ft_putstr(find_name(path->link1, rooms)->line);
         ft_putchar('-');
-        ft_putstr(find_name(path->link2, rooms));
+        ft_putstr(find_name(path->link2, rooms)->line);
+        ft_putchar('-');
+        ft_putnbr(path->open);
         if (path->open)
         {
             if (id == path->link1)
             {
-                ft_putstr("\nFOUND:\n");
+                ft_putstr("\nFOUND\n");
                 path->open = 0;
+                node_path[size] = *path;
+                path->prev_id = id;
                 return (path->link2);
             }
             else if (id == path->link2)
             {
                 ft_putstr("\nFOUND:\n");
                 path->open = 0;
+                node_path[size] = *path;
+                path->prev_id = id;
                 return (path->link1);
             }
         }
@@ -108,9 +139,14 @@ int search_nodes(t_path *path, int id, t_line *rooms)
     return (0);
 }
 
+// t_crumbs    *create_crumb(t_crumbs *curr, t_path *previous)
+// {
+//     curr = (t_line *)malloc(sizeof(t_line));
+// }
+
 int path_finder(t_map *map, t_path *path)
 {
-    int prev_id;
+    //int prev_id;
     int id;
     int tmp;
 
@@ -119,20 +155,20 @@ int path_finder(t_map *map, t_path *path)
     ft_putstr(" - ");
     ft_putnbr(id);
     ft_putchar(10);
-    prev_id = id;
+    // prev_id = id;
     map->id_arr_size = 0;
     while (1)
     {
         ft_putstr("\nCurrent node location:\n");
-        ft_putstr(find_name(id, map->rooms));
+        ft_putstr(find_name(id, map->rooms)->line);
         ft_putchar(10);
-        if ((tmp = search_nodes(path, id, map->rooms)))
+        if ((tmp = search_nodes(path, id, map->rooms, t_crumbs map->node_path[map->id_arr_size])))
         {
             ft_putstr("\nArray size:\n");
             ft_putnbr(map->id_arr_size);
             ft_putchar(10);
             map->id_paths[map->id_arr_size++] = id;
-            prev_id = id;
+            //prev_id = id;
             id = tmp;
         }
         else if (id == map->room_end->id)
@@ -142,7 +178,7 @@ int path_finder(t_map *map, t_path *path)
             ft_putstr("\nBACK ONE PATH\n");
             if (--map->id_arr_size < 0)
                 return (0);
-            id = prev_id;
+            id = map->node_path[map->id_arr_size].id;
         }
     }
 }

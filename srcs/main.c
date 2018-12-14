@@ -6,13 +6,13 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/26 16:20:07 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 17:27:05 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		getinfo(t_line *info)
+int	getinfo(t_line *info)
 {
 	char	*line;
 	int		i;
@@ -29,8 +29,13 @@ int		getinfo(t_line *info)
 	return (i);
 }
 
-int		get_pipes(t_map *map, t_line *pipe, t_line *info)
+int	get_pipes(t_map *map, t_line *pipe, t_line *info)
 {
+	t_line *pipe_start;
+	int i;
+
+	i = 0;
+	pipe_start = pipe;
 	while (ft_strequ(info->cmt, "PIPE_START") == 0)
 		info = info->next;
 	while (info->next)
@@ -38,7 +43,11 @@ int		get_pipes(t_map *map, t_line *pipe, t_line *info)
 		if (info->line[0] == '#')
 			;
 		else if (is_valid_pipe(map->rooms, info->line))
-			pipe = create_link(pipe, info->line, 0);
+		{
+			if (i == 0 || check_if_dup(pipe_start, info->line) == 0)
+				pipe = create_link(pipe, info->line, 0);
+			i++;
+		}
 		else
 			return (0);
 		info = info->next;
@@ -74,7 +83,7 @@ void	free_all(t_map *map, t_line *info)
 	free(map);
 }
 
-int		main(void)
+int	main(void)
 {
 	t_map	*map;
 	t_line	*info;
@@ -92,6 +101,7 @@ int		main(void)
 		ft_putstr(map->rooms->next->line);
 		ft_putchar(10);
 	}
+	print_rooms(map->rooms);
 	// t_line *rooms = map->rooms;
 	// while (rooms->next)
 	// {

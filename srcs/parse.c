@@ -6,13 +6,13 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/26 15:26:22 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/14 16:44:17 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		check_rooms(t_line *rooms)
+int	check_rooms(t_line *rooms)
 {
 	int start;
 	int end;
@@ -32,7 +32,7 @@ int		check_rooms(t_line *rooms)
 	return (0);
 }
 
-int		get_ants(t_map *map, t_line *info)
+int	get_ants(t_map *map, t_line *info)
 {
 	int i;
 
@@ -60,7 +60,7 @@ int		get_ants(t_map *map, t_line *info)
 	return (0);
 }
 
-int		is_room(char *line)
+int	is_room(char *line)
 {
 	int count;
 
@@ -81,7 +81,7 @@ int		is_room(char *line)
 	return (0);
 }
 
-int		get_rooms(t_line *rooms, t_line *info)
+int	get_rooms(t_line *rooms, t_line *info)
 {
 	t_line	*prev;
 
@@ -108,7 +108,7 @@ int		get_rooms(t_line *rooms, t_line *info)
 	return (0);
 }
 
-int		parse(t_map *map, t_line *info)
+int	parse(t_map *map, t_line *info)
 {
 	if (getinfo(info) == 0)
 		ft_putstr("EMPTY MAP\n");
