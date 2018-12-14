@@ -23,6 +23,17 @@ int find_id(char *name, t_line *rooms)
     return (0);
 }
 
+char *find_name(int id, t_line *rooms)
+{
+    while (rooms->next)
+    {
+        if (rooms->id == id)
+            return (rooms->line);
+        rooms = rooms->next;
+    }
+    return (0);
+}
+
 void path_nodes(t_path *path, t_line *pipes, t_line *rooms) {
     int i;
 
@@ -52,6 +63,8 @@ void save_names(t_map *map, t_line *info)
         }
         info = info->next;
     }
+    map->room_start->id = find_id(map->room_start->line, map->rooms);
+    map->room_end->id = find_id(map->room_end->line, map->rooms);
 }
 
 void assign_ids(t_line *rooms) {
@@ -67,19 +80,25 @@ void assign_ids(t_line *rooms) {
 }
 
 
-int search_nodes(t_path *path, int id)
+int search_nodes(t_path *path, int id, t_line *rooms)
 {
     while (path->next)
     {
+        ft_putstr("\nnode:\n");
+        ft_putstr(find_name(path->link1, rooms));
+        ft_putchar('-');
+        ft_putstr(find_name(path->link2, rooms));
         if (path->open)
         {
             if (id == path->link1)
             {
+                ft_putstr("\nFOUND:\n");
                 path->open = 0;
                 return (path->link2);
             }
             else if (id == path->link2)
             {
+                ft_putstr("\nFOUND:\n");
                 path->open = 0;
                 return (path->link1);
             }
@@ -96,15 +115,23 @@ int path_finder(t_map *map, t_path *path)
     int tmp;
 
     id = map->room_start->id;
+    ft_putstr(map->room_start->line);
+    ft_putstr(" - ");
     ft_putnbr(id);
+    ft_putchar(10);
     prev_id = id;
     map->id_arr_size = 0;
     while (1)
     {
-        ft_putstr("JustWhilin'\n");
-        if ((tmp = search_nodes(path, id)))
+        ft_putstr("\nCurrent node location:\n");
+        ft_putstr(find_name(id, map->rooms));
+        ft_putchar(10);
+        if ((tmp = search_nodes(path, id, map->rooms)))
         {
-            map->id_paths[map->id_arr_size++] = tmp;
+            ft_putstr("\nArray size:\n");
+            ft_putnbr(map->id_arr_size);
+            ft_putchar(10);
+            map->id_paths[map->id_arr_size++] = id;
             prev_id = id;
             id = tmp;
         }
@@ -112,6 +139,7 @@ int path_finder(t_map *map, t_path *path)
             return (1);
         else
         {
+            ft_putstr("\nBACK ONE PATH\n");
             if (--map->id_arr_size < 0)
                 return (0);
             id = prev_id;
@@ -139,12 +167,13 @@ int find_path(t_map *map, t_line *info)
     if (path_finder(map, map->path) == 0)
         return (0);
     int i = 0;
-    ft_putstr("shouldbenow:\n");
+    ft_putstr("\nPath Array:\n");
     while (i < map->id_arr_size)
     {
         ft_putchar('|');
         ft_putnbr(map->id_paths[i++]);
         ft_putchar('|');
     }
+    ft_putchar(10);
     return (1);
 }

@@ -25,6 +25,8 @@ void	print_rooms(t_line *info)
 	while (info->next)
 	{
 		ft_putstr(info->line);
+		ft_putstr(" - ");
+		ft_putnbr(info->id);
 		ft_putchar(10);
 		info = info->next;
 	}
