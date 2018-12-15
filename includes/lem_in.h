@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 12:59:37 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 21:51:37 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 12:57:40 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ int		getinfo(t_line *info);
 int		find_char(char *str, int c);
 int		find_path(t_map *map, t_line *info);
 int 		check_if_dup(t_line *pipe, char *name);
+t_line	*find_name(int id, t_line *rooms);
+void print_ants(t_map *map);
 
 #endif

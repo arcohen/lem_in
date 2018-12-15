@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 22:20:08 by arcohen          ###   ########.fr       */
+/*   Created: 2018/12/15 12:21:39 by arcohen           #+#    #+#             */
+/*   Updated: 2018/12/15 12:54:32 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ int search_nodes(t_path *path, int id, t_line *rooms)
 
 int path_finder(t_map *map, t_path *path)
 {
-    //int prev_id;
     int id;
     int tmp;
 
@@ -155,24 +154,25 @@ int path_finder(t_map *map, t_path *path)
     ft_putstr(" - ");
     ft_putnbr(id);
     ft_putchar(10);
-    // prev_id = id;
     map->id_arr_size = 0;
     while (1)
     {
         ft_putstr("\nCurrent node location:\n");
         ft_putstr(find_name(id, map->rooms)->line);
         ft_putchar(10);
-        if ((tmp = search_nodes(path, id, map->rooms)))
+        if (id == map->room_end->id)
+        {
+            map->id_paths[map->id_arr_size++] = id;
+            return (1);
+        }
+        else if ((tmp = search_nodes(path, id, map->rooms)))
         {
             ft_putstr("\nArray size:\n");
             ft_putnbr(map->id_arr_size);
             ft_putchar(10);
             map->id_paths[map->id_arr_size++] = id;
-            //prev_id = id;
             id = tmp;
         }
-        else if (id == map->room_end->id)
-            return (1);
         else
         {
             ft_putstr("\nBACK ONE PATH\n");

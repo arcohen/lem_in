@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 22:09:47 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 13:04:00 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int	get_rooms(t_line *rooms, t_line *info)
 
 int	parse(t_map *map, t_line *info)
 {
+	// ft_putstr("HEYA");
 	if (getinfo(info) == 0)
 		ft_putstr("EMPTY MAP\n");
 	else if (get_ants(map, info) == 0)
@@ -129,6 +130,7 @@ int	parse(t_map *map, t_line *info)
 		ft_putstr("\n\n\n\n");
 		ft_putchar(10);
 		print_rooms(info);
+		print_ants(map);
 		return (1);
 	}
 	return (0);

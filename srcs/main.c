@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 22:14:58 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 13:04:49 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	main(void)
 		ft_putchar(10);
 	}
 	print_rooms(map->rooms);
+	// print_ants(map);
 	// t_line *rooms = map->rooms;
 	// while (rooms->next)
 	// {
