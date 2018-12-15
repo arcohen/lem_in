@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/14 22:07:26 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 14:39:21 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		is_valid_pipe(t_line *room, char *pipe)
 	t_line	*head;
 
 	head = room;
-	if ((d = find_char(pipe, '-')) == 0 ||
+	if ((d = find_char(pipe, '-')) == -1 ||
 	(ft_strnequ(pipe, &pipe[d + 1], d) && ft_strlen(&pipe[d + 1]) == d))
 		return (0);
 	while (room->next)

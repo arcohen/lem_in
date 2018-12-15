@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/15 13:04:49 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 15:45:33 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	get_pipes(t_map *map, t_line *pipe, t_line *info)
 	{
 		if (info->line[0] == '#')
 			;
+		else if (strrchr(info->line, ' '))
+			return (0);
 		else if (is_valid_pipe(map->rooms, info->line))
 		{
 			if (i == 0 || check_if_dup(pipe_start, info->line) == 0)
@@ -101,7 +103,7 @@ int	main(void)
 		ft_putstr(map->rooms->next->line);
 		ft_putchar(10);
 	}
-	print_rooms(map->rooms);
+	//print_rooms(map->rooms);
 	// print_ants(map);
 	// t_line *rooms = map->rooms;
 	// while (rooms->next)

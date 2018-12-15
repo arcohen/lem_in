@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 12:21:39 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/15 12:54:32 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/15 15:44:52 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@ int check_if_dup(t_line *pipe, char *name)
 {
     char *link;
 
-    // if (pipe == NULL)
-    //     return (0);
     while (pipe->next)
     {
-        // ft_putstr(name);
-        // ft_putchar(10);
-        if (ft_strequ(pipe->line, name))
-            return (1);
         link = &pipe->line[find_char(pipe->line, '-') + 1];
         if (ft_strnequ(link, name, ft_strlen(link)))
         {
@@ -103,9 +97,6 @@ void assign_ids(t_line *rooms) {
         rooms = rooms->next;
     }
 }
-
-
-
 
 int search_nodes(t_path *path, int id, t_line *rooms)
 {
