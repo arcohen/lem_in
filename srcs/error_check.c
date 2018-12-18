@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/15 14:39:21 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:24:55 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,15 @@ void	check_for_comm(char *cmt, char *prev)
 		ft_strcpy(cmt, "ROOM_END");
 }
 
-void	print_rooms(t_line *info)
-{
-	while (info->next)
-	{
-		ft_putstr(info->line);
-		ft_putstr(" - ");
-		ft_putnbr(info->id);
-		ft_putchar(10);
-		info = info->next;
-	}
-}
+// void	print_rooms(t_line *info)
+// {
+// 	while (info->next)
+// 	{
+// 		ft_putstr(info->line);
+// 		ft_putchar(10);
+// 		info = info->next;
+// 	}
+// }
 
 int		find_char(char *str, int c)
 {

@@ -6,13 +6,35 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/15 15:45:33 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:29:56 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lem_in.h"
+#include	"../includes/lem_in.h"
 
-int	getinfo(t_line *info)
+int	dup_room(t_line *rooms, char *name)
+{
+	int k;
+
+	k = 0;
+	while (rooms)
+	{
+		if (ft_strequ(rooms->line, name))
+			k++;
+		if (k > 1)
+			return (1);
+		rooms = rooms->next;
+	}
+	return (0);
+}
+
+void	create_errey(char *errey, char *line)
+{
+	ft_strcat(errey, line);
+	ft_strcat(errey, "\n");
+}
+
+int	getinfo(t_line *info, char *copy)
 {
 	char	*line;
 	int	i;
@@ -20,6 +42,7 @@ int	getinfo(t_line *info)
 	i = 0;
 	while (get_next_line(0, &line) > 0)
 	{
+		create_errey(copy, line);
 		info->line = line;
 		info->next = (t_line *)malloc(sizeof(t_line));
 		info = info->next;
@@ -31,8 +54,8 @@ int	getinfo(t_line *info)
 
 int	get_pipes(t_map *map, t_line *pipe, t_line *info)
 {
-	t_line *pipe_start;
-	int i;
+	t_line	*pipe_start;
+	int	i;
 
 	i = 0;
 	pipe_start = pipe;
@@ -57,34 +80,6 @@ int	get_pipes(t_map *map, t_line *pipe, t_line *info)
 	return (1);
 }
 
-void	lstdel(t_line **alst, int del)
-{
-	t_line *next;
-	t_line *current;
-
-	current = *alst;
-	while (current)
-	{
-		next = current->next;
-		if (del)
-			free(current->line);
-		free(current);
-		current = next;
-	}
-	*alst = NULL;
-}
-
-void	free_all(t_map *map, t_line *info)
-{
-	if (map->rooms)
-		lstdel(&map->rooms, 0);
-	if (map->pipes)
-		lstdel(&map->pipes, 0);
-	lstdel(&info, 1);
-	free(info);
-	free(map);
-}
-
 int	main(void)
 {
 	t_map	*map;
@@ -95,24 +90,10 @@ int	main(void)
 	map->rooms = (t_line *)malloc(sizeof(t_line));
 	map->pipes = (t_line *)malloc(sizeof(t_line));
 	map->path = (t_path *)malloc(sizeof(t_path));
-	// map->rooms = NULL;
-	// map->pipes = NULL;
 	if (parse(map, info))
 	{
-		ft_putstr("\n1-");
-		ft_putstr(map->rooms->next->line);
-		ft_putchar(10);
+		ft_putstr(map->errey);
+		print_ants(map);
 	}
-	//print_rooms(map->rooms);
-	// print_ants(map);
-	// t_line *rooms = map->rooms;
-	// while (rooms->next)
-	// {
-	// 	ft_putchar(10);
-	// 	ft_putnbr(map->rooms->id);
-	// 	ft_putchar(10);
-	// 	rooms = rooms->next;
-	// }
-	//free_all(map, info);
 	return (0);
 }
