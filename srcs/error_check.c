@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arcohen <marvin@42.fr>            			+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:46 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/20 14:53:48 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:24:55 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,6 @@ void	check_for_comm(char *cmt, char *prev)
 		ft_strcpy(cmt, "ROOM_START");
 	else if (!ft_strcmp(prev, "##end"))
 		ft_strcpy(cmt, "ROOM_END");
-}
-
-void	print_rooms(t_line *info)
-{
-	while (info->next)
-	{
-		ft_putstr(info->line);
-		ft_putchar(10);
-		info = info->next;
-	}
-}
-
-int		check_rooms(t_line *rooms)
-{
-	int start;
-	int end;
-
-	start = 0;
-	end = 0;
-	while (rooms)
-	{
-		if (ft_strequ(rooms->cmt, "ROOM_START"))
-			start++;
-		else if (ft_strequ(rooms->cmt, "ROOM_END"))
-			end++;
-		rooms = rooms->next;
-	}
-	if (start == 1 && end == 1)
-		return (1);
-	return (0);
 }
 
 int		find_char(char *str, int c)
@@ -71,7 +41,7 @@ int		is_valid_pipe(t_line *room, char *pipe)
 	t_line	*head;
 
 	head = room;
-	if ((d = find_char(pipe, '-')) == 0 ||
+	if ((d = find_char(pipe, '-')) == -1 ||
 	(ft_strnequ(pipe, &pipe[d + 1], d) && ft_strlen(&pipe[d + 1]) == d))
 		return (0);
 	while (room->next)
@@ -97,6 +67,9 @@ t_line	*create_link(t_line *curr, char *line, int room)
 	curr->next->next = NULL;
 	curr->line = line;
 	if (room)
+	{
 		curr->line[find_char(curr->line, ' ')] = 0;
+		curr->open = 1;
+	}
 	return (curr->next);
 }

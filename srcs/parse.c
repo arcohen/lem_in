@@ -3,16 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
+/*   By: arcohen <marvin@42.fr>            			+#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/20 14:55:05 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/18 16:29:11 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
 
-int		get_ants(t_map *map, t_line *info)
+int	check_rooms(t_line *rooms)
+{
+	int		start;
+	int		end;
+	t_line	*beg;
+
+	beg = rooms;
+	start = 0;
+	end = 0;
+	while (rooms)
+	{
+		if (dup_room(beg, rooms->line))
+			return (0);
+		if (ft_strequ(rooms->cmt, "ROOM_START"))
+			start++;
+		else if (ft_strequ(rooms->cmt, "ROOM_END"))
+			end++;
+		rooms = rooms->next;
+	}
+	if (start == 1 && end == 1)
+		return (1);
+	return (0);
+}
+
+int	get_ants(t_map *map, t_line *info)
 {
 	int i;
 
@@ -40,7 +64,7 @@ int		get_ants(t_map *map, t_line *info)
 	return (0);
 }
 
-int		is_room(char *line)
+int	is_room(char *line)
 {
 	int count;
 
@@ -61,7 +85,7 @@ int		is_room(char *line)
 	return (0);
 }
 
-int		get_rooms(t_line *rooms, t_line *info)
+int	get_rooms(t_line *rooms, t_line *info)
 {
 	t_line	*prev;
 
@@ -88,30 +112,19 @@ int		get_rooms(t_line *rooms, t_line *info)
 	return (0);
 }
 
-int		parse(t_map *map, t_line *info)
+int	parse(t_map *map, t_line *info)
 {
-	if (getinfo(info) == 0)
-	{
+	if (getinfo(info, map->errey) == 0)
 		ft_putstr("EMPTY MAP\n");
-		return (0);
-	}
-	if (get_ants(map, info) == 0)
-	{
+	else if (get_ants(map, info) == 0)
 		ft_putstr("ERROR IN ANT NUMBER\n");
-		return (0);
-	}
-	map->rooms = (t_line *)malloc(sizeof(t_line));
-	if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
-	{
+	else if (get_rooms(map->rooms, info) == 0 || check_rooms(map->rooms) == 0)
 		ft_putstr("ERROR IN ROOMS\n");
-		return (0);
-	}
-	map->pipes = (t_line *)malloc(sizeof(t_line));
-	if (get_pipes(map, map->pipes, info) == 0)
-	{
+	else if (get_pipes(map, map->pipes, info) == 0)
 		ft_putstr("ERROR IN PIPES\n");
-		return (0);
-	}
-	print_rooms(info);
-	return (1);
+	else if (find_path(map, info) == 0)
+		ft_putstr("NO POSSIBLE SOLUTION\n");
+	else
+		return (1);
+	return (0);
 }

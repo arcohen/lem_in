@@ -13,7 +13,7 @@ H 3 4
 ##end
 T 3 6
 M 4 6
-L 4 4
+Z 4 4
 N 3 4
 S-E
 S-B
@@ -31,6 +31,6 @@ H-N
 N-T
 I-T
 M-T
-L-M
-K-L
+Z-M
+K-G
 S-B

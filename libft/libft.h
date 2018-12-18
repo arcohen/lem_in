@@ -6,7 +6,7 @@
 /*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/05/23 11:52:01 by arcohen           #+#    #+#             */
-/*   Updated: 2018/09/13 18:11:09 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/08/02 16:08:59 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 t_list				*ft_lstnew(void const *content, size_t content_size);
 int					get_next_line(const int fd, char **line);
 long				ft_atoi_long(const char *str);
-char				*ft_strcsub(char const *s, unsigned int end);
 
 #endif

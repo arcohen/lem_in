@@ -1,6 +1,5 @@
 100
 ##start
-rs 1 0
 s1 1 1
 s2 2 2
 s3 3 3
@@ -11,10 +10,6 @@ s7 7 7
 ##end
 re 5 0
 s8 8 8
-rs-s1
-rs-s3
-rs-s5
-rs-s7
 s1-s2
 s3-s4
 s5-s6

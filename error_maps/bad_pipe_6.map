@@ -12,11 +12,11 @@ room8 4 3
 ##end
 end 3 5
 room9 8 2
- start-room1
+start-room1
 room1-room2
 room2-room3
 room3-room4
-room4-room5
+roo m4 -room5
 room5-room6
 room6-room7
 room7-room8

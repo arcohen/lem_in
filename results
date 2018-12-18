@@ -1,0 +1,619 @@
+S - 3
+
+Current node location:
+S
+
+node:
+S-E-1
+FOUND
+
+Array size:
+0
+
+Current node location:
+E
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-1
+FOUND
+
+Array size:
+1
+
+Current node location:
+F
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-1
+node:
+G-K-1
+node:
+D-C-1
+node:
+F-H-1
+FOUND
+
+Array size:
+2
+
+Current node location:
+H
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-1
+FOUND:
+
+Array size:
+3
+
+Current node location:
+G
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-1
+FOUND
+
+Array size:
+4
+
+Current node location:
+K
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-1
+node:
+F-H-0
+node:
+H-I-1
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+node:
+M-T-1
+node:
+Z-M-1
+BACK ONE PATH
+
+Current node location:
+G
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-1
+node:
+F-H-0
+node:
+H-I-1
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+node:
+M-T-1
+node:
+Z-M-1
+BACK ONE PATH
+
+Current node location:
+H
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-1
+node:
+F-H-0
+node:
+H-I-1
+FOUND
+
+Array size:
+3
+
+Current node location:
+I
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-1
+FOUND:
+
+Array size:
+4
+
+Current node location:
+D
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+node:
+D-I-0
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-1
+FOUND
+
+Array size:
+5
+
+Current node location:
+C
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-1
+FOUND:
+
+Array size:
+6
+
+Current node location:
+B
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-0
+node:
+D-I-0
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-0
+node:
+F-H-0
+node:
+H-I-0
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+node:
+M-T-1
+node:
+Z-M-1
+BACK ONE PATH
+
+Current node location:
+C
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-0
+node:
+D-I-0
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-0
+node:
+F-H-0
+node:
+H-I-0
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+node:
+M-T-1
+node:
+Z-M-1
+BACK ONE PATH
+
+Current node location:
+D
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-0
+node:
+D-I-0
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-0
+node:
+F-H-0
+node:
+H-I-0
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+node:
+M-T-1
+node:
+Z-M-1
+BACK ONE PATH
+
+Current node location:
+I
+
+node:
+S-E-0
+node:
+S-B-1
+node:
+S-G-1
+node:
+B-C-0
+node:
+D-I-0
+node:
+E-F-0
+node:
+G-H-0
+node:
+G-K-0
+node:
+D-C-0
+node:
+F-H-0
+node:
+H-I-0
+node:
+H-N-1
+node:
+N-T-1
+node:
+I-T-1
+FOUND
+
+Array size:
+4
+
+Current node location:
+T
+
+Path Array:
+|S||E||F||H||I||T|
+B - 1
+C - 2
+S - 3
+E - 4
+F - 5
+G - 6
+K - 7
+D - 8
+I - 9
+H - 10
+T - 11
+M - 12
+Z - 13
+N - 14
+
+
+
+
+
+25 - 32767
+B - 0
+C - 0
+##start - 0
+S - 3
+E - 0
+F - 0
+G - 0
+K - 0
+D - 0
+I - 0
+H - 0
+##end - 0
+T - 11
+M - 0
+Z - 0
+N - 0
+S-E - 0
+S-B - 0
+S-G - 0
+B-C - 0
+D-I - 0
+E-F - 0
+G-H - 0
+G-K - 0
+E-F - 0
+D-C - 0
+F-H - 0
+H-I - 0
+H-N - 0
+N-T - 0
+I-T - 0
+M-T - 0
+Z-M - 0
+K-G - 0
+S-B - 0
+
+L1-E
+L1-F
+L1-H
+L1-I
+L1-T
+L2-E
+L2-F
+L2-H
+L2-I
+L2-T
+L3-E
+L3-F
+L3-H
+L3-I
+L3-T
+L4-E
+L4-F
+L4-H
+L4-I
+L4-T
+L5-E
+L5-F
+L5-H
+L5-I
+L5-T
+L6-E
+L6-F
+L6-H
+L6-I
+L6-T
+L7-E
+L7-F
+L7-H
+L7-I
+L7-T
+L8-E
+L8-F
+L8-H
+L8-I
+L8-T
+L9-E
+L9-F
+L9-H
+L9-I
+L9-T
+L10-E
+L10-F
+L10-H
+L10-I
+L10-T
+L11-E
+L11-F
+L11-H
+L11-I
+L11-T
+L12-E
+L12-F
+L12-H
+L12-I
+L12-T
+L13-E
+L13-F
+L13-H
+L13-I
+L13-T
+L14-E
+L14-F
+L14-H
+L14-I
+L14-T
+L15-E
+L15-F
+L15-H
+L15-I
+L15-T
+L16-E
+L16-F
+L16-H
+L16-I
+L16-T
+L17-E
+L17-F
+L17-H
+L17-I
+L17-T
+L18-E
+L18-F
+L18-H
+L18-I
+L18-T
+L19-E
+L19-F
+L19-H
+L19-I
+L19-T
+L20-E
+L20-F
+L20-H
+L20-I
+L20-T
+L21-E
+L21-F
+L21-H
+L21-I
+L21-T
+L22-E
+L22-F
+L22-H
+L22-I
+L22-T
+L23-E
+L23-F
+L23-H
+L23-I
+L23-T
+L24-E
+L24-F
+L24-H
+L24-I
+L24-T
+L25-E
+L25-F
+L25-H
+L25-I
+L25-T
+
+1-C
+B - 1
+C - 2
+S - 3
+E - 4
+F - 5
+G - 6
+K - 7
+D - 8
+I - 9
+H - 10
+T - 11
+M - 12
+Z - 13
+N - 14
