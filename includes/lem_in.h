@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <marvin@42.fr>            			+#+  +:+       +#+        */
+/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 17:54:42 by arcohen           #+#    #+#             */
-/*   Updated: 2017/12/18 17:54:48 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/19 17:39:45 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct	s_map
 	int				id_arr_size;
 	struct s_line	*rooms;
 	struct s_line	*pipes;
+	struct s_line	*prev_room;
 	char			errey[2500];
 	struct s_path	*path;
 }				t_map;

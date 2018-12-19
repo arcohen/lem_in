@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <marvin@42.fr>      			    +#+  +:+       +#+        */
+/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 14:19:04 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/18 16:29:56 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/19 17:43:07 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		dup_room(t_line *rooms, char *name)
 	int k;
 
 	k = 0;
-	while (rooms)
+	while (rooms->next)
 	{
 		if (ft_strequ(rooms->line, name))
 			k++;
@@ -90,6 +90,7 @@ int		main(void)
 	map->rooms = (t_line *)malloc(sizeof(t_line));
 	map->pipes = (t_line *)malloc(sizeof(t_line));
 	map->path = (t_path *)malloc(sizeof(t_path));
+	map->rooms->next = 0;
 	if (parse(map, info))
 	{
 		ft_putstr(map->errey);

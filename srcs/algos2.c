@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algos2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <marvin@42.fr>            			+#+  +:+       +#+        */
+/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 20:50:42 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/17 20:55:16 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/19 18:07:51 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,7 @@ void	save_names(t_map *map, t_line *info)
 		if (ft_strequ(info->line, "##start"))
 			map->room_start = info->next;
 		else if (ft_strequ(info->line, "##end"))
-		{
 			map->room_end = info->next;
-			break ;
-		}
 		info = info->next;
 	}
 	map->room_start->id = find_id(map->room_start->line, map->rooms);

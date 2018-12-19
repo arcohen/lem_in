@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <marvin@42.fr>            			+#+  +:+       +#+        */
+/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 13:19:12 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/18 16:29:11 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/19 18:01:05 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lem_in.h"
+#include "stdio.h"
 
 int	check_rooms(t_line *rooms)
 {
@@ -21,7 +22,12 @@ int	check_rooms(t_line *rooms)
 	beg = rooms;
 	start = 0;
 	end = 0;
-	while (rooms)
+	while (beg->next)
+	{
+		printf("room name: %s\ncomment: %s\n", beg->line, beg->cmt);
+		beg = beg->next;
+	}
+	while (rooms->next)
 	{
 		if (dup_room(beg, rooms->line))
 			return (0);
@@ -96,8 +102,9 @@ int	get_rooms(t_line *rooms, t_line *info)
 	{
 		if (is_room(info->line))
 		{
-			rooms = create_link(rooms, info->line, 1);
+			create_link(rooms, info->line, 1);
 			check_for_comm(rooms->cmt, prev->line);
+			rooms = rooms->next;
 		}
 		else if (info->line[0] == '#')
 			;

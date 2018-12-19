@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arcohen <marvin@42.fr>           			+#+  +:+       +#+        */
+/*   By: arcohen <arcohen@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 12:21:39 by arcohen           #+#    #+#             */
-/*   Updated: 2018/12/17 21:30:37 by arcohen          ###   ########.fr       */
+/*   Updated: 2018/12/19 18:02:45 by arcohen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int		find_path(t_map *map, t_line *info)
 {
 	assign_ids(map->rooms);
 	save_names(map, info);
+	ft_putstr("FUCKIN UIT\n");
 	path_nodes(map->path, map->pipes, map->rooms);
 	if (path_finder(map, map->path) == 0)
 		return (0);
